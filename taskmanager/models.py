@@ -16,8 +16,8 @@ class Task(db.Model):
     #The Task class is a model for the task table in the database (schema)
     id = db.Column(db.Integer, primary_key=True)
     task_name = db.Column(db.String(50), unique=True ,nullable=False)
-    task_description = db.Column(db.Text(200), nullable=False)
-    is_urgent = db.Column(db.Boolean(20), default=False ,nullable=False)
+    task_description = db.Column(db.Text, nullable=False)
+    is_urgent = db.Column(db.Boolean, default=False ,nullable=False)
     due_date = db.Column(db.Date, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("category.id", ondelete="CASCADE"), nullable=False)
 
