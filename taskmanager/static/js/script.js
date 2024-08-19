@@ -2,8 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // side nav initialization
     let sidenav = document.querySelectorAll('.sidenav');
     M.Sidenav.init(sidenav);
-  });
 
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
 
 
 
