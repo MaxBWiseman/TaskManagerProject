@@ -69,3 +69,6 @@ def add_task():# calls the add_task() function from clicking nav links
         db.session.commit()
         return redirect(url_for("home"))
     return render_template("add_task.html", categories=categories)
+# the first 'categories' listed is the variable name that we will be able
+# to use on the template itself. The second 'categories' is simply the list
+# of categories retrieved from the database defined above.
