@@ -33,3 +33,12 @@ When a user clicks the "Add Category" button, this will use the "GET" method and
 Once they submit the form, this will call the same function, but will check if the request
 being made is a “POST“ method, which posts data somewhere, such as a database.
     """
+    
+@app.route("/edit_category/<int:category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    category = Category.query.get_or_404(category_id)
+    if request.method == "POST":
+        category.category_name = request.form.get("category_name")
+        db.session.commit()
+        return redirect(url_for("categories"))
+    return render_template("edit_category.html", category=category)
