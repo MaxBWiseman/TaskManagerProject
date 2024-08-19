@@ -5,17 +5,23 @@ from taskmanager.models import Category, Task
 
 
 @app.route("/")
-def home():# resieves the home() function from clicking nav links
+def home():# calls the home() function from clicking nav links
     return render_template("tasks.html")
 # The home route is the default route that renders the tasks.html template.
 # this page will be displayed always when the user visits the website first.
 
 @app.route("/categories")
-def categories():# resieves the categories() function from clicking nav links
-    return render_template("categories.html")
+def categories():# calls the categories() function from clicking nav links
+    categories = list(Category.query.order_by(Category.category_name).all())
+    #Whenever we call this function by clicking the navbar link for Categories, it will query
+    #the database and retrieve all records from this table, then sort them by the category name.
+    return render_template("categories.html", categories=categories)
+#The first declaration of 'categories' is the variable name that we can now use within the HTML template.
+#The second 'categories', which is now a list(), is the variable defined within our function
+
 
 @app.route("/add_category", methods=["GET", "POST"])# when user submits the form, the data is sent to the database
-def add_category():# resieves the add_category() function from clicking nav links
+def add_category():# calls the add_category() function from clicking nav links
     if request.method == "POST":
         category = Category(category_name=request.form.get("category_name"))
         db.session.add(category)
