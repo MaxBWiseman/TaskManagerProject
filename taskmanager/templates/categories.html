@@ -20,6 +20,7 @@
                 <span class="card-title">{{ category.category_name }}</span>
             </div>
             <div class="card-action">
+                <!--CRUD functionality (create, read, update, delete )-->
                 <a href="{{ url_for('edit_category', category_id=category.id) }}" class="btn green accent-4">Edit</a>
                 <a href="#modal-{{ category.id }}" class="btn red modal-trigger">Delete</a>
                 <!--since we are within the for-loop of all categories, it's using the current
