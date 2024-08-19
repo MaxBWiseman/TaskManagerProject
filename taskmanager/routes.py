@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request
 from taskmanager import app, db
 from taskmanager.models import Category, Task
 
@@ -16,4 +16,8 @@ def categories():# resieves the categories() function from clicking nav links
 
 @app.route("/add_category", methods=["GET", "POST"])# when user submits the form, the data is sent to the database
 def add_category():# resieves the add_category() function from clicking nav links
+    if request.method == "POST":
+        category = Category(name=request.form.get("category_name"))
+        db.session.add(category)
+        db.session.commit()
     return render_template("add_category.html")
