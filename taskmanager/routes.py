@@ -6,7 +6,8 @@ from taskmanager.models import Category, Task
 
 @app.route("/")
 def home():# calls the home() function from clicking nav links
-    return render_template("tasks.html")
+    tasks = list(Task.query.order_by(Task.id).all())# query the database and retrieve all records from this table
+    return render_template("tasks.html", tasks=tasks)
 # The home route is the default route that renders the tasks.html template.
 # this page will be displayed always when the user visits the website first.
 
