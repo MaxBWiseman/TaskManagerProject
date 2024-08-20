@@ -74,8 +74,9 @@ def add_task():# calls the add_task() function from clicking nav links
 # to use on the template itself. The second 'categories' is simply the list
 # of categories retrieved from the database defined above.
 
-@app.route("/edit_tasks/<int:task_id>", methods=["GET", "POST"])# when user submits the form, the data is sent to the database
-def edit_tasks(task_id):# calls the add_task() function from clicking nav links
+
+@app.route("/edit_task/<int:task_id>", methods=["GET", "POST"])
+def edit_task(task_id):
     task = Task.query.get_or_404(task_id)
     categories = list(Category.query.order_by(Category.category_name).all())
     if request.method == "POST":
@@ -85,4 +86,4 @@ def edit_tasks(task_id):# calls the add_task() function from clicking nav links
         task.due_date = request.form.get("due_date")
         task.category_id = request.form.get("category_id")
         db.session.commit()
-    return render_template("edit_tasks.html", task=task, categories=categories)
+    return render_template("edit_task.html", task=task, categories=categories)
