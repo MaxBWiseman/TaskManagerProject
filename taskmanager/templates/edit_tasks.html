@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="light-blue-text text-darken-4 center-align">Edit Tasks</h3>
+<!--CRUD functionality (create, read, update, delete )-->
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('edit_tasks') }}">
+    <!--task name-->
+      <div class="row">
+        <div class="input-field col s12">
+            <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>  
+          <input id="task_name" name="task_name" value="{{ task.task_name }}" minlength="3" maxlength="25" type="text" class="validate">
+          <label for="task_name">Task Name</label>
+        </div>
+      </div>
+      <!--task description-->
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="task_description" name="task_description" value="{{ task.task_description }}" minlength="3" maxlength="255" type="text" class="validate">
+          <label for="task_description">Task Description</label>
+        </div>
+      </div>
+      <!--is urgent-->
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="is_urgent" name="is_urgent" value="{{ task.is_urgent }}" type="checkbox" class="validate">
+          <label for="is_urgent">Is Urgent</label>
+        </div>
+      </div>
+      <!--due date-->
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="due_date" name="due_date" value="{{ task.due_date }}" type="date" class="validate">
+          <label for="due_date">Due Date</label>
+        </div>
+      </div>
+      <!--category id-->
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="category_id" name="category_id" value="{{ task.category_id }}" type="number" class="validate">
+          <label for="category_id">Category ID</label>
+        </div>
+      </div>
+      <!--submit button-->
+      <div class="row">
+        <div class="col s12 center-align">
+           <button type="submit" class="btn-large light-orange darken-1">
+            Edit Task <i class="fas fa-plus-circle light-blue-text text-darken-4"></i>
+           </button>
+        </div>
+      </div>
+    </form>
+</div>
+
+{% endblock %}
